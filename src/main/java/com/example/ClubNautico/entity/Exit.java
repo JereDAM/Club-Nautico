@@ -9,7 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,8 +38,13 @@ public class Exit {
 	private String destination;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "patronExit")
+	@ManyToOne
+	@JoinColumn(name = "patron_id")
 	private Patron patron;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "boat_id")
+	private Boat boat;
 	
 }
